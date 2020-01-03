@@ -1,5 +1,8 @@
 name: 'Simple Merge'
 description: 'Merge pull request action'
+branding:
+  icon: 'git-merge'  
+  color: 'yellow'
 inputs:
   token:
     description: 'github token'

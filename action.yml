@@ -1,0 +1,29 @@
+name: 'Simple Merge'
+description: 'Merge pull request action'
+inputs:
+  token:
+    description: 'github token'
+    required: true
+    default: ''
+  method:
+    description:  'merge method'
+    required: false
+    default: 'squash'
+  labels:
+    description: 'require labels to merge (JSON array string)'
+    required: false
+    default: '[ "automerge" ]'
+  title:
+    description: 'commit title'
+    required: false
+    default: 'merge by automerge action'
+  message:
+    description: 'commit message'
+    required: false
+    default: 'none'
+outputs:
+  result:
+    description: 'merge result (success or failure)'
+runs:
+  using: 'node12'
+  main: 'dist/index.js'

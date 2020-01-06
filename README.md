@@ -40,10 +40,14 @@ jobs:
     steps:
       - name: automerge
         uses: buildsville/simple-merge@v1
+        id: merge
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           method: 'squash'
           labels: '[ "foo", "bar" ]'
           title: 'commit title'
           message: 'commit message'
+      - name: result
+        run: |
+          echo "result: ${{ steps.merge.outputs.result }}"
 ```

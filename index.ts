@@ -85,12 +85,12 @@ async function mergePullRequest(conf: Config): Promise<Output> {
         result: "success"
     }
 
-    let client = new github.GitHub(conf.token)
+    let client = github.getOctokit(core.getInput('token'))
     let pullRequest = github.context.payload.pull_request 
     if ( pullRequest == undefined ) {
         return failureOutput
     }
-    await client.pulls.merge({
+    await client.rest.pulls.merge({
         owner: pullRequest.head.repo.owner.login,
         repo: pullRequest.head.repo.name,
         pull_number: pullRequest.number,
@@ -99,7 +99,7 @@ async function mergePullRequest(conf: Config): Promise<Output> {
         merge_method: conf.method
     }).catch(
         e => {
-            console.log(e.message)
+            core.setFailed(e.message)
             return failureOutput
         }
     )

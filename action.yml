@@ -28,5 +28,5 @@ outputs:
   result:
     description: 'merge result (success or failure)'
 runs:
-  using: 'node12'
+  using: 'node16'
   main: 'dist/index.js'
